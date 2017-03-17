@@ -73,10 +73,6 @@ public class UpdateLoop implements Runnable {
             
         }
     }
-    
-    public static void main(String args[])
-    {
-        //(new MyThread(new UpdateLoop())).start();
-    }
+
     
 }

@@ -40,17 +40,9 @@ public class Interface extends javax.swing.JFrame {
     DateTime date;
     Trayicon tray;
     
-    
-    
-    
-    
     boolean loop;
     
     ReadFile otherlog;
-    
-    
-    
-    
     
     /**
      * Creates new form Interface
@@ -102,12 +94,6 @@ public class Interface extends javax.swing.JFrame {
         
         jSpinner1.setValue(5);
         
-        
-        //dnsup.writeNewLine();
-        //dnsup.writeToFile("LOG FILE!");
-
-        //dnsup.writeNewLine();
-        //dnsup.writeDateTime();
         jTextField2.setText(dnsup.getIP());
         jTextField1.setText(dnsup.getSiteIP(site));
         

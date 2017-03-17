@@ -28,10 +28,6 @@ public class DDNSUpdate {
         update = updateurl;
         
     }
-
-    public static void main(String[] args) {
-        
-    }
     
     public String getIP()
     {

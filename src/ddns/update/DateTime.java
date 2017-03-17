@@ -13,10 +13,6 @@ public class DateTime {
     
     DateFormat df;
     
-    public static void main(String[] args)
-    {
-         
-    }
     
     public DateTime()
     {

@@ -18,9 +18,7 @@ import javax.swing.SwingWorker;
  *
  * @author james
  */
-public class AnswerWorker extends SwingWorker<Integer, Integer>
-
-{
+public class AnswerWorker extends SwingWorker<Integer, Integer> {
 
     DDNSUpdate dnsup;
     boolean loopy;
@@ -32,33 +30,25 @@ public class AnswerWorker extends SwingWorker<Integer, Integer>
     String ip;
     JTextArea jTextFieldLoop;
     DateTime date;
-    
-    
-    public AnswerWorker(DDNSUpdate ddnsup2)
-    {
+
+    public AnswerWorker(DDNSUpdate ddnsup2) {
         dnsup = ddnsup2;
         loopy = dnsup.getLoop();
         jTextFieldLoop = dnsup.getJTextFieldLoop();
         date = new DateTime();
     }
-    
 
-    protected Integer doInBackground() throws Exception
-    {
-        try
-        {
+    protected Integer doInBackground() throws Exception {
+        try {
             System.out.println("before runloop ");
             runLoop();
-            
-        }
-        
-        catch(Exception e)
-        {
-                    
+
+        } catch (Exception e) {
+
         }
         return 19;
     }
-        
+
 //////        // Do a time-consuming task.
 ////////        Thread.sleep(5000);
 //////        loopy = dnsup.getLoop();
@@ -90,25 +80,17 @@ public class AnswerWorker extends SwingWorker<Integer, Integer>
 //////        //System.out.println("12");
 //////        return i;
 //////    }
+    protected void done() {
 
-    protected void done()
-    {
-        
-        try
-        {
-            
+        try {
+
             System.out.println("done method?");
             get();
-            
+
+        } catch (Exception e) {
+
         }
-        
-        catch (Exception e)
-        {
-                    
-        }
-            
-        
-        
+
 //////        loopy = dnsup.getLoop();
 //////        i = 0;
 //////        
@@ -133,62 +115,58 @@ public class AnswerWorker extends SwingWorker<Integer, Integer>
 //////        } catch (InterruptedException ex) {
 //////            Logger.getLogger(Interface.class.getName()).log(Level.SEVERE, null, ex);
 //////        }
-        
 //////        }
-
-        
     }
-    
-    
-    
-    public void runLoop() throws InterruptedException
-    {
+
+    public void runLoop() throws InterruptedException {
         System.out.println("in runloop ");
         loopy = true;
         //loopy = dnsup.getLoop();
         int cal = dnsup.getDelay();
         int l = 0;
         String loopoutput = "";
-        
+
         //Thread.sleep(cal);
-        
-        while(loopy == true)
-        {
-        
-        try {
-        l++;
-        //loopoutput = loopoutput + "Starting update Loop " + l + "   " + date.getDate() + "\n";
-        jTextFieldLoop.setText("Starting update loop " + l + "   " + date.getDate() + "\n" + jTextFieldLoop.getText());
-        loopy = dnsup.getLoop();
-        System.out.println("after getLoop ");
-        con = dnsup.getConfig();                    //gets config file
-        System.out.println("after getConfig ");
-        site = dnsup.getSite();                 //gets site to check ip address of from config file
-        System.out.println("after getProp site ");
-        siteip = dnsup.getSiteIP(site);             //checks ip of site
-        System.out.println("after getSiteIP ");
-        update = dnsup.getUpdateURL();          //gets update url from the config file
-        System.out.println("after getProp URLupdate ");
-        ip = dnsup.getIP();                         //gets local ip
-        System.out.println("getIP ");
-        System.out.println("in while loop ");
-        
-        dnsup.setSiteTextField(siteip);
-        dnsup.setIPTextField(ip);
-        
-        dnsup.setIP(update);
-        
-        TimeUnit.MINUTES.sleep(cal);
-        //Thread.sleep(cal);
-        } 
-        catch (InterruptedException ex) 
-        {
-            Logger.getLogger(Interface.class.getName()).log(Level.SEVERE, null, ex);
+        while (loopy == true) {
+
+            try {
+
+                l++;
+                int lines = jTextFieldLoop.getLineCount();
+                if (lines < 15) {
+                    jTextFieldLoop.setText("Starting update loop " + l + "   " + date.getDate() + "\n" + jTextFieldLoop.getText());
+                }
+                else
+                {
+                    jTextFieldLoop.setText("");
+                }
+                loopy = dnsup.getLoop();
+                System.out.println("after getLoop ");
+                con = dnsup.getConfig();                    //gets config file
+                System.out.println("after getConfig ");
+                site = dnsup.getSite();                 //gets site to check ip address of from config file
+                System.out.println("after getProp site ");
+                siteip = dnsup.getSiteIP(site);             //checks ip of site
+                System.out.println("after getSiteIP ");
+                update = dnsup.getUpdateURL();          //gets update url from the config file
+                System.out.println("after getProp URLupdate ");
+                ip = dnsup.getIP();                         //gets local ip
+                System.out.println("getIP ");
+                System.out.println("in while loop ");
+
+                dnsup.setSiteTextField(siteip);
+                dnsup.setIPTextField(ip);
+
+                dnsup.setIP(update);
+
+                TimeUnit.MINUTES.sleep(cal);
+                //Thread.sleep(cal);
+            } catch (InterruptedException ex) {
+                Logger.getLogger(Interface.class.getName()).log(Level.SEVERE, null, ex);
+            }
+
         }
-        
-        
-        }
-    
+
     }
-    
+
 }
